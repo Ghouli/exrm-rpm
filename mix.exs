@@ -24,7 +24,7 @@ defmodule ExrmRpm.Mixfile do
 
   defp deps do
 #    [{:exrm, "~> 1.0.0"}]
-     [{:exrm, git: "git://github.com/ghouli/exrm.git"}]
+     [{:exrm, github: "ghouli/exrm"}]
   end
 
   defp package do

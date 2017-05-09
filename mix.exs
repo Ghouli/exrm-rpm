@@ -5,9 +5,9 @@ defmodule ExrmRpm.Mixfile do
     [app: :exrm_rpm,
      version: "0.3.4",
      elixir: "~> 1.4",
-     description: description,
-     package: package,
-     deps: deps]
+     description: description(),
+     package: package(),
+     deps: deps()]
   end
 
   def application do
@@ -23,7 +23,6 @@ defmodule ExrmRpm.Mixfile do
   end
 
   defp deps do
-#    [{:exrm, "~> 1.0.0"}]
      [{:exrm, github: "ghouli/exrm"}]
   end
 

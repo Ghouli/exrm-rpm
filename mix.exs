@@ -4,7 +4,7 @@ defmodule ExrmRpm.Mixfile do
   def project do
     [app: :exrm_rpm,
      version: "0.3.4",
-     elixir: "~> 1.0",
+     elixir: "~> 1.4",
      description: description,
      package: package,
      deps: deps]

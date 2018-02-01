@@ -15,6 +15,16 @@ defmodule ExrmRpmTest do
     IO.puts rpm_file
   end
 
+  test "rpm_file_name with build", %{config: config} do
+    rpm_file = Rpm.rpm_file_name("test", "0.0.1+47", "x86_64")
+    assert rpm_file == "test-0.0.1-47.x86_64.rpm"
+  end
+
+  test "rpm_file_name without build", %{config: config} do
+    rpm_file = Rpm.rpm_file_name("test", "0.0.1", "x86_64")
+    assert rpm_file == "test-0.0.1-0.x86_64.rpm"
+  end
+
   test "creates the spec work directories", meta do
     Rpm.after_release(meta[:config])
   end

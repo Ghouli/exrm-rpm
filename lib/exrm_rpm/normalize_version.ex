@@ -25,7 +25,7 @@ defmodule ReleaseManager.Plugin.Rpm.NormalizeVersion do
 
   def build_number(version) when is_binary(version) do
     case version |> String.split("+") do
-      [ver, build] -> build
+      [_ver, build] -> build
       _ -> "0"
     end
   end

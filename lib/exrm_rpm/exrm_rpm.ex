@@ -177,8 +177,11 @@ defmodule ReleaseManager.Plugin.Rpm do
     Path.join("./rel/", rel_path)
   end
 
-  def rpm_file_name(name, version, arch, match \\ false),
-    do: "#{name}-#{version |> normalize_version}-#{version |> build_number}.#{if match, do: "*", else: ""}#{arch}.rpm"
+  def rpm_file_name(name, version, arch, match \\ false)
+  def rpm_file_name(name, version, arch, false),
+    do: "#{name}-#{version |> normalize_version}-#{version |> build_number}.#{arch}.rpm"
+  def rpm_file_name(name, version, arch, true),
+    do: "#{name}-#{version |> normalize_version}-*.#{arch}.rpm"
 
   def get_config_item(config, item, default) do
     app    = String.to_atom config.name

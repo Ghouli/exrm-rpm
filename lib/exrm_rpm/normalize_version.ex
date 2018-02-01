@@ -22,4 +22,11 @@ defmodule ReleaseManager.Plugin.Rpm.NormalizeVersion do
   def normalize_version([maj, min, patch, pre]) when patch > 0 do
     [maj, min, patch - 1, 99, pre]
   end
+
+  def build_number(version) when is_binary(version) do
+    case version |> String.split("+") do
+      [ver, build] -> build
+      _ -> "0"
+    end
+  end
 end

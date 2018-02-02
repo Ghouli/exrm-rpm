@@ -4,10 +4,7 @@
 %define erl_release    {{{PROJECT_RELEASE}}}
 Name:    {{{PROJECT_NAME}}}
 Version: {{{PROJECT_VERSION}}}
-
-# Up issuing the release is NOT supported due to live upgrades. Please 
-# up issue the Version only
-Release: 0%{?dist}
+Release: {{{PROJECT_APP_BUILD_NUMBER}}}%{?dist}
 Summary: {{{SUMMARY}}}
 
 Group:         Applications

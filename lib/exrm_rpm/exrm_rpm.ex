@@ -25,6 +25,7 @@ defmodule ReleaseManager.Plugin.Rpm do
   @_NAME        "{{{PROJECT_NAME}}}"
   @_VERSION     "{{{PROJECT_VERSION}}}"
   @_RELEASE     "{{{PROJECT_RELEASE}}}"
+  @_BUILD_NUM   "{{{PROJECT_APP_BUILD_NUMBER}}}"
   @_TOPDIR      "{{{PROJECT_TOPDIR}}}"
   @_BUILD_ARCH  "{{{BUILD_ARCHITECTURE}}}"
   @_SUMMARY     "{{{SUMMARY}}}"
@@ -95,6 +96,7 @@ defmodule ReleaseManager.Plugin.Rpm do
     |> String.replace(@_NAME, config.name)
     |> String.replace(@_VERSION, config.version |> normalize_version)
     |> String.replace(@_RELEASE, config.version)
+    |> String.replace(@_BUILD_NUM, config.version |> build_number)
     |> String.replace(@_TOPDIR, config.build_dir)
     |> String.replace(@_BUILD_ARCH, config.build_arch)
     |> String.replace(@_SUMMARY, config.summary)

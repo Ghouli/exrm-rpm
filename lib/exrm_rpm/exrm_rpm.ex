@@ -132,14 +132,14 @@ defmodule ReleaseManager.Plugin.Rpm do
 
     if File.exists? config.app_tar_path do
       File.cp!(config.app_tar_path, config.sources_path)
-      run_rpmbulid config, File.exists?(config.rpmbuild)
+      run_rpmbuild config, File.exists?(config.rpmbuild)
     else
       error "Could not find the release file #{config.app_tar_path}"
     end
     config
   end
 
-  defp run_rpmbulid(config, rpmbuild?) when rpmbuild? do
+  defp run_rpmbuild(config, rpmbuild?) when rpmbuild? do
     spec_path = Path.join([config.build_dir, "SPECS", "#{config.name}.spec"])
     System.cmd(config.rpmbuild, [ config.rpmbuild_opts, spec_path ])
 
@@ -149,7 +149,7 @@ defmodule ReleaseManager.Plugin.Rpm do
     info "Rpm #{get_relative_path config.target_rpm_path} created!"
   end
 
-  defp run_rpmbulid(config, _) do
+  defp run_rpmbuild(config, _) do
     warn """
     Cannot find rpmbuild tool #{config.rpmbuild}. Skipping rpm build!
     The generated build files can be found in #{config.build_dir}

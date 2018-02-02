@@ -131,6 +131,7 @@ defmodule ReleaseManager.Plugin.Rpm do
 
   defp create_rpm(config) do
     debug "Building rpm..."
+    IO.puts "in create_rpm"
 
     if File.exists? config.app_tar_path do
       File.cp!(config.app_tar_path, config.sources_path)

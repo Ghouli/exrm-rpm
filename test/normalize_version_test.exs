@@ -1,7 +1,5 @@
 defmodule NormalizeVersionTest do
   use ExUnit.Case
-  alias ReleaseManager.Config
-  alias ReleaseManager.Plugin.Rpm
   
   import ReleaseManager.Plugin.Rpm.NormalizeVersion
 

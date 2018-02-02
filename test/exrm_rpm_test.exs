@@ -4,13 +4,13 @@ defmodule ExrmRpmTest do
   alias ReleaseManager.Utils
   alias ReleaseManager.Plugin.Rpm
 
-  defmacrop test_project_path, do: Path.expand("test_project", __DIR__)
-  defmacrop rpm_file, do: "/rel/test_project/releases/0.1.0/test_project-0.1.0-0.x86_64.rpm"
+  @test_project_path  Path.expand("test_project", __DIR__)
+  @rpm_file           "/rel/test_project/releases/0.1.0/test_project-0.1.0-0.x86_64.rpm"
 
   defmacrop with_app(body) do
     quote do
       cwd = File.cwd!
-      File.cd! test_project_path()
+      File.cd! @test_project_path
       unquote(body)
       File.cd! cwd
     end
@@ -46,7 +46,7 @@ defmodule ExrmRpmTest do
         # Build and package release
         assert :ok = Utils.mix("do deps.get, compile", Mix.env, :quiet)
         assert :ok = Utils.mix("release --rpm --verbosity=verbose", Mix.env, :verbose)
-        assert File.exists?("#{test_project_path()}/#{rpm_file()}")
+        assert File.exists?(Path.join(@test_project_path, @rpm_file))
     end
   end
 end
